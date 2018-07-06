@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="educational-teachingplan-api" />
+        <module name="educational-teachingplan-entities" />
+        <module name="general-major-api" />
+        <module name="general-major-biz" />
+        <module name="general-major-dao" />
+        <module name="general-major-entities" />
+        <module name="general-major-rest" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="educational-teachingplan-api" target="1.8" />
+      <module name="educational-teachingplan-biz" target="1.8" />
+      <module name="educational-teachingplan-dao" target="1.8" />
+      <module name="educational-teachingplan-entities" target="1.8" />
+      <module name="educational-teachingplan-rest" target="1.8" />
+      <module name="general-major-api" target="1.8" />
+      <module name="general-major-biz" target="1.8" />
+      <module name="general-major-dao" target="1.8" />
+      <module name="general-major-entities" target="1.8" />
+      <module name="general-major-rest" target="1.8" />
+      <module name="general-parent" target="1.8" />
+      <module name="major-parent" target="1.8" />
+      <module name="teachingplan-parent" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
