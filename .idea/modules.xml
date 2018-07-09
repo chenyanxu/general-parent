@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/major-parent/general-major-api/general-major-api.iml" filepath="$PROJECT_DIR$/major-parent/general-major-api/general-major-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/major-parent/general-major-biz/general-major-biz.iml" filepath="$PROJECT_DIR$/major-parent/general-major-biz/general-major-biz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/major-parent/general-major-dao/general-major-dao.iml" filepath="$PROJECT_DIR$/major-parent/general-major-dao/general-major-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/major-parent/general-major-entities/general-major-entities.iml" filepath="$PROJECT_DIR$/major-parent/general-major-entities/general-major-entities.iml" />
+      <module fileurl="file://$PROJECT_DIR$/major-parent/general-major-rest/general-major-rest.iml" filepath="$PROJECT_DIR$/major-parent/general-major-rest/general-major-rest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/general-parent.iml" filepath="$PROJECT_DIR$/.idea/general-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/major-parent/major-parent.iml" filepath="$PROJECT_DIR$/major-parent/major-parent.iml" />
+    </modules>
+  </component>
+</project>
