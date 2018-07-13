@@ -13,7 +13,7 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -82,6 +82,7 @@
     <orderEntry type="library" name="Maven: redis.clients:jedis:sources:2.9.0" level="project" />
     <orderEntry type="library" name="Maven: com.github.penggle:kaptcha:2.3.2" level="project" />
     <orderEntry type="library" name="Maven: com.jhlabs:filters:2.0.235-1" level="project" />
+    <orderEntry type="library" name="Maven: com.github.abel533:ECharts:3.0.0.2" level="project" />
     <orderEntry type="library" name="Maven: com.kalix.admin.core:admin-core-api:1.0.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: com.kalix.admin.core:admin-core-entities:1.0.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: com.kalix.admin.core:admin-core-dto:1.0.1-SNAPSHOT" level="project" />

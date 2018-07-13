@@ -7,18 +7,18 @@
           <property key="Export-Package" value="com.kalix.general.major.rest.*;version=&quot;1.0.0-SNAPSHOT&quot;" />
           <property key="Import-Package" value="*" />
           <property key="Bundle-Name" value="Kalix General Major Rest" />
+          <property key="Include-Resource" value="{OSGI-INF/blueprint/major-rest.xml=$MODULE_DIR$/src/main/resources/OSGI-INF/blueprint/major-rest.xml},OSGI-INF/blueprint/major-rest.xml=$MODULE_DIR$/src/main/resources/OSGI-INF/blueprint/major-rest.xml" />
         </additionalProperties>
         <additionalJARContents />
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -82,6 +82,7 @@
     <orderEntry type="library" name="Maven: redis.clients:jedis:sources:2.9.0" level="project" />
     <orderEntry type="library" name="Maven: com.github.penggle:kaptcha:2.3.2" level="project" />
     <orderEntry type="library" name="Maven: com.jhlabs:filters:2.0.235-1" level="project" />
+    <orderEntry type="library" name="Maven: com.github.abel533:ECharts:3.0.0.2" level="project" />
     <orderEntry type="library" name="Maven: com.kalix.admin.core:admin-core-api:1.0.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: com.kalix.admin.core:admin-core-entities:1.0.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: com.kalix.admin.core:admin-core-dto:1.0.1-SNAPSHOT" level="project" />
