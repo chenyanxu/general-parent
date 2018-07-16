@@ -5,7 +5,6 @@
     <jpa:enable/>
     <tx:enable-annotations/>
     <reference id="majorInfoBeanDao" interface="com.kalix.general.major.api.dao.IMajorInfoBeanDao"/>
-    <reference id="organizationBeanService" interface="com.kalix.admin.core.api.biz.IOrganizationBeanService"/>
 
     <bean id="majorInfoBeanServiceImpl" class="com.kalix.general.major.biz.MajorInfoBeanServiceImpl">
         <property name="dao" ref="majorInfoBeanDao"/>

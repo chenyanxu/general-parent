@@ -1,25 +1,29 @@
 package com.kalix.general.course.entities;
 
-import com.kalix.framework.core.api.persistence.PersistentEntity;
+import com.kalix.framework.core.api.persistence.BaseTreeExtendEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
- * @类描述：专业课程管理
+ * @类描述：课程管理
  * @创建人： hqj
  * @创建时间：2017-11-28
- * @修改人：
- * @修改时间：
+ * @修改人： hqj
+ * @修改时间：2018-07-16
  * @修改备注：
  */
 //todo 修改模型定义
 @Entity
 @Table(name = "general_course_info")
-public class CourseInfoBean extends PersistentEntity {
+public class CourseInfoBean extends BaseTreeExtendEntity {
     private String name;    //课程名称
     private String comment; //课程描述
-    private Long majorId;   //所属专业id
+
+    @Transient
+    private Long majorId;
+    private String majorName;
 
     public String getName() {
         return name;
@@ -43,5 +47,13 @@ public class CourseInfoBean extends PersistentEntity {
 
     public void setMajorId(Long majorId) {
         this.majorId = majorId;
+    }
+
+    public String getMajorName() {
+        return majorName;
+    }
+
+    public void setMajorName(String majorName) {
+        this.majorName = majorName;
     }
 }

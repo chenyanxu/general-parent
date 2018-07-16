@@ -1,5 +1,6 @@
 package com.kalix.general.major.biz;
 
+import com.kalix.framework.core.api.web.model.BaseTreeDTO;
 import com.kalix.framework.core.impl.biz.TreeExtendShiroGenericBizServiceImpl;
 import com.kalix.general.major.api.biz.IMajorInfoBeanService;
 import com.kalix.general.major.api.dao.IMajorInfoBeanDao;
@@ -17,5 +18,20 @@ public class MajorInfoBeanServiceImpl extends TreeExtendShiroGenericBizServiceIm
         super.init(MajorInfoBean.class.getName());
         super.setTreeName(TREE_NAME);
         super.setBeanName(BEAN_NAME);
+    }
+
+    @Override
+    public BaseTreeDTO getAllTree() {
+        return null;
+    }
+
+    @Override
+    public BaseTreeDTO getTreeByNodeId(Long nodeId) {
+        return null;
+    }
+
+    @Override
+    public String getParentIdPath(Long nodeId) {
+        return null;
     }
 }

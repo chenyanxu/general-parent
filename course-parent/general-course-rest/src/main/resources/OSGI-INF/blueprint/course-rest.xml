@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+       http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
+    <reference id="courseinfoService" interface="com.kalix.general.course.api.biz.ICourseInfoBeanService"/>
+    <bean id="courseInfoRoute" class="com.kalix.framework.core.impl.camel.BaseRouteBuilder">
+        <property name="beanName" value="com.kalix.general.course.entities.CourseInfoBean"/>
+        <property name="rests">
+            <list>
+                <bean class="com.kalix.framework.core.api.camel.CustomRest">
+                    <property name="path" value="/majorinfos/{majorId}/courses"/>
+
+                    <property name="getDescription" value="查询指定专业id下的全部课程信息"/>
+                    <property name="getOutType" value="com.kalix.framework.core.api.persistence.JsonData"/>
+                    <property name="getToUri"
+                              value="bean:courseinfoService?method=getEntitiesByFK(${header.orgId},${header.page},${header.limit},${header.jsonStr},${header.sort})"/>
+
+                    <property name="postDescription" value="保存指定专业id的课程信息"/>
+                    <property name="inType" value="com.kalix.general.course.entities.CourseInfoBean"/>
+                    <property name="postOutType" value="com.kalix.framework.core.api.persistence.JsonStatus"/>
+                    <property name="postToUri"
+                              value="bean:courseinfoService?method=saveEntityByFK(${header.orgId},${body})"/>
+                </bean>
+                <bean class="com.kalix.framework.core.api.camel.CustomRest">
+                    <property name="path" value="/majorinfos/{majorId}/courses/{id}"/>
+
+                    <property name="putDescription" value="修改指定专业id下的课程信息"/>
+                    <property name="inType" value="com.kalix.general.course.entities.CourseInfoBean"/>
+                    <property name="putOutType" value="com.kalix.framework.core.api.persistence.JsonStatus"/>
+                    <property name="putToUri"
+                              value="bean:courseinfoService?method=updateEntityByFK(${header.orgId},${body})"/>
+
+                    <property name="deleteDescription" value="删除指定专业id下的课程信息"/>
+                    <property name="deleteOutType" value="com.kalix.framework.core.api.persistence.JsonStatus"/>
+                    <property name="deleteToUri"
+                              value="bean:courseinfoService?method=deleteEntityByFK(${header.orgId},${header.id})"/>
+                </bean>
+                <!--<bean class="com.kalix.framework.core.api.camel.CustomRest">-->
+                <!--<property name="path" value="/majorinfosTree"/>-->
+                <!--<property name="getDescription" value="查询树型结构专业信息"/>-->
+                <!--<property name="getOutType" value="com.kalix.framework.core.api.persistence.BaseTreeEntity"/>-->
+                <!--<property name="getToUri"-->
+                <!--value="bean:majorinfoService?method=getEntitiesByFK(${header.orgId},${header.page},${header.limit},${header.jsonStr},${header.sort})"/>-->
+                <!--</bean>-->
+                <!--<bean class="com.kalix.framework.core.api.camel.CustomRest">-->
+                <!--<property name="path" value="/majorinfosTree/{orgId}"/>-->
+                <!--<property name="getDescription" value="查询指定院(系)部id下的树型结构专业信息"/>-->
+                <!--<property name="getOutType" value="com.kalix.framework.core.api.persistence.JsonData"/>-->
+                <!--<property name="getToUri"-->
+                <!--value="bean:majorinfoService?method=getEntitiesByFK(${header.orgId},${header.page},${header.limit},${header.jsonStr},${header.sort})"/>-->
+                <!--</bean>-->
+            </list>
+        </property>
+    </bean>
+
+    <camelContext id="courseInfoCamel" xmlns="http://camel.apache.org/schema/blueprint">
+        <routeBuilder ref="courseInfoRoute"/>
+    </camelContext>
+
+</blueprint>

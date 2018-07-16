@@ -12,9 +12,8 @@
     <artifactId>general-major-rest</artifactId>
     <name>Kalix General Major Rest</name>
     <packaging>bundle</packaging>
+
     <properties>
         <bundle.symbolicName>com.kalix.general.major.rest</bundle.symbolicName>
     </properties>
-
-
 </project>

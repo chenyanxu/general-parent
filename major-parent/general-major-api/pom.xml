@@ -19,14 +19,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.kalix.framework.core</groupId>
-            <artifactId>framework-core-impl</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.kalix.general.major</groupId>
             <artifactId>general-major-entities</artifactId>
         </dependency>
-
     </dependencies>
 
 </project>

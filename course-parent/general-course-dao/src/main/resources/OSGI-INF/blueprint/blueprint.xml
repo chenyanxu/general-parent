@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- default-activation="lazy" -->
+<blueprint xmlns:jpa="http://aries.apache.org/xmlns/jpa/v2.0.0"
+           xmlns:tx="http://aries.apache.org/xmlns/transactions/v1.2.0"
+           xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+    <jpa:enable/>
+    <tx:enable-annotations/>
+    <reference id="majorInfoBeanDao" interface="com.kalix.general.major.api.dao.IMajorInfoBeanDao"/>
+
+    <!--课程信息dao-->
+    <bean id="courseInfoBeanDaoImpl"
+          class="com.kalix.general.course.dao.CourseInfoBeanDaoImpl"> <!--init-method="init">-->
+        <tx:transaction method="*" value="Required"/>
+        <property name="majorInfoBeanDao" ref="majorInfoBeanDao"/>
+    </bean>
+
+    <service id="courseInfoBeanDao" ref="courseInfoBeanDaoImpl" interface="com.kalix.general.course.api.dao.ICourseInfoBeanDao"/>
+</blueprint>

@@ -9,11 +9,31 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.kalix.general.course</groupId>
     <artifactId>course-parent</artifactId>
     <name>Kalix General Course Parent</name>
     <modules>
         <module>general-course-entities</module>
+        <module>general-course-api</module>
+        <module>general-course-dao</module>
+        <module>general-course-biz</module>
+        <module>general-course-rest</module>
     </modules>
     <packaging>pom</packaging>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.kalix.general.course</groupId>
+                <artifactId>general-course-entities</artifactId>
+                <version>${project.general.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kalix.general.course</groupId>
+                <artifactId>general-course-api</artifactId>
+                <version>${project.general.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>

@@ -9,21 +9,18 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>general-course-entities</artifactId>
-    <name>Kalix General Course Entities</name>
+    <artifactId>general-course-api</artifactId>
+    <name>Kalix General Course API</name>
     <packaging>bundle</packaging>
 
     <properties>
-        <bundle.symbolicName>com.kalix.general.course.entities</bundle.symbolicName>
+        <bundle.symbolicName>com.kalix.general.course.api</bundle.symbolicName>
     </properties>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.openjpa</groupId>
-                <artifactId>openjpa-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-
+    <dependencies>
+        <dependency>
+            <groupId>com.kalix.general.course</groupId>
+            <artifactId>general-course-entities</artifactId>
+        </dependency>
+    </dependencies>
 </project>
