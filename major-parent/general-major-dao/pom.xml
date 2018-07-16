@@ -16,6 +16,7 @@
     <properties>
         <bundle.symbolicName>com.kalix.general.major.dao</bundle.symbolicName>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.kalix.general.major</groupId>

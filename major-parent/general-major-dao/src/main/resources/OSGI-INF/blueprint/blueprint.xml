@@ -6,13 +6,15 @@
            xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
     <jpa:enable/>
     <tx:enable-annotations/>
+    <reference id="organizationBeanDao" interface="com.kalix.admin.core.api.dao.IOrganizationBeanDao"/>
 
-    <!--教务校园信息dao-->
-    <service id="majorInfoBeanDao" ref="majorInfoBeanDaoImpl" interface="com.kalix.general.major.api.dao.IMajorInfoBeanDao"/>
-
+    <!--专业信息dao-->
     <bean id="majorInfoBeanDaoImpl"
           class="com.kalix.general.major.dao.MajorInfoBeanDaoImpl"> <!--init-method="init">-->
         <tx:transaction method="*" value="Required"/>
+        <property name="organizationBeanDao" ref="organizationBeanDao"/>
     </bean>
+
+    <service id="majorInfoBeanDao" ref="majorInfoBeanDaoImpl" interface="com.kalix.general.major.api.dao.IMajorInfoBeanDao"/>
 
 </blueprint>

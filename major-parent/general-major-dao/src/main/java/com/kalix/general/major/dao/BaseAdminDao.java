@@ -1,7 +1,7 @@
 package com.kalix.general.major.dao;
 
-import com.kalix.framework.core.api.persistence.PersistentEntity;
-import com.kalix.framework.core.impl.dao.GenericDao;
+import com.kalix.framework.core.api.persistence.BaseTreeExtendEntity;
+import com.kalix.framework.core.impl.dao.BaseTreeExtendEntityDao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,7 +10,7 @@ import java.io.Serializable;
 /**
  * Created by sunlf on 2015/10/26.
  */
-public abstract class BaseAdminDao<T extends PersistentEntity, PK extends Serializable> extends GenericDao<T, PK> {
+public abstract class BaseAdminDao<T extends BaseTreeExtendEntity, PK extends Serializable> extends BaseTreeExtendEntityDao<T, PK> {
     @Override
     @PersistenceContext(unitName = "general-major-unit")
     public void setEntityManager(EntityManager em) {

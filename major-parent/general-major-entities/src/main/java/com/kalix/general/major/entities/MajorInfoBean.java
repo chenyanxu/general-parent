@@ -1,178 +1,167 @@
 package com.kalix.general.major.entities;
 
-import com.kalix.framework.core.api.annotation.KalixCascade;
-import com.kalix.framework.core.api.annotation.TableCascade;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.kalix.framework.core.api.persistence.BaseTreeExtendEntity;
 import com.kalix.framework.core.api.persistence.PersistentEntity;
+import org.apache.openjpa.persistence.jdbc.Unique;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import java.util.Date;
 
 /**
- * @类描述：专业课程管理
- * @创建人： hqj
- * @创建时间：2017-11-28
- * @修改人：
- * @修改时间：
+ * @类描述：专业信息管理
+ * @创建人： fwb
+ * @创建时间：2018-07-06
+ * @修改人： hqj
+ * @修改时间：2018-07-13
  * @修改备注：
  */
 //todo 修改模型定义
 @Entity
-@Table(name = "general_major_course")
-public class MajorInfoBean extends PersistentEntity {
-    private String name;    //课程名称
-    private Long orgid;     //所在机构(学院专业)id
+@Table(name = "general_major_info")
+public class MajorInfoBean extends BaseTreeExtendEntity {
+    @Column(unique = true)
+    private String code;           //专业代码
+    @Column(unique = true)
+    private String standardCode;   //国标专业代码
+    private String cnName;         //中文名称
+    private String enName;         //英文名称
+    private Integer subjectType;   //所属学科[字典:所属学科]
+    private String period;         //学制(学习年限)
+    private String trainingLevel;  //培养层次
+    private Integer available = 1; //状态，是否可用：（0-不可用 1-可用）
+    private String degree;         //授予学位
+    private String normalClass;    //师范类
+    private String minorRepair;    //允许辅修
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy", timezone = "GMT+8")
+    private Date settingYear;      //设置年份
+    private String introduction;   //专业简介
+
     @Transient
-    private String orgname;     //所在机构(学院专业)id
-    private String comment; //课程描述
-    private String zydm;   //专业代码
-    private String gbzydm; //国标专业代码
-    private String zwmc;   //中文名称
-    private String ywmc;    //英文名称
-    private String ssxk;    //所属学科
-    private String xz  ;    //学制
-    private String pycc;    //培养层次
-    private String zt;      //状态
-    private String syxw;    //授予学位
-    private String sfl;     //师范类
-    private String yxfx;    //允许辅修
-    private String sznf;    //设置年份
-    private String zyjj;    //专业简介
+    private Long orgId;            //所属院(系)部id
+    @Transient
+    private String orgName;        //所属院(系)部名称
 
-
-    public String getOrgname() {
-        return orgname;
+    public String getCode() {
+        return code;
     }
 
-    public void setOrgname(String orgname) {
-        this.orgname = orgname;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public String getZydm() {
-        return zydm;
+    public String getStandardCode() {
+        return standardCode;
     }
 
-    public void setZydm(String zydm) {
-        this.zydm = zydm;
+    public void setStandardCode(String standardCode) {
+        this.standardCode = standardCode;
     }
 
-    public String getGbzydm() {
-        return gbzydm;
+    public String getCnName() {
+        return cnName;
     }
 
-    public void setGbzydm(String gbzydm) {
-        this.gbzydm = gbzydm;
+    public void setCnName(String cnName) {
+        this.cnName = cnName;
     }
 
-    public String getZwmc() {
-        return zwmc;
+    public String getEnName() {
+        return enName;
     }
 
-    public void setZwmc(String zwmc) {
-        this.zwmc = zwmc;
+    public void setEnName(String enName) {
+        this.enName = enName;
     }
 
-    public String getYwmc() {
-        return ywmc;
+    public Integer getSubjectType() {
+        return subjectType;
     }
 
-    public void setYwmc(String ywmc) {
-        this.ywmc = ywmc;
+    public void setSubjectType(Integer subjectType) {
+        this.subjectType = subjectType;
     }
 
-    public String getSsxk() {
-        return ssxk;
+    public String getPeriod() {
+        return period;
     }
 
-    public void setSsxk(String ssxk) {
-        this.ssxk = ssxk;
+    public void setPeriod(String period) {
+        this.period = period;
     }
 
-    public String getXz() {
-        return xz;
+    public String getTrainingLevel() {
+        return trainingLevel;
     }
 
-    public void setXz(String xz) {
-        this.xz = xz;
+    public void setTrainingLevel(String trainingLevel) {
+        this.trainingLevel = trainingLevel;
     }
 
-    public String getPycc() {
-        return pycc;
+    public Integer getAvailable() {
+        return available;
     }
 
-    public void setPycc(String pycc) {
-        this.pycc = pycc;
+    public void setAvailable(Integer available) {
+        this.available = available;
     }
 
-    public String getZt() {
-        return zt;
+    public String getDegree() {
+        return degree;
     }
 
-    public void setZt(String zt) {
-        this.zt = zt;
+    public void setDegree(String degree) {
+        this.degree = degree;
     }
 
-    public String getSyxw() {
-        return syxw;
+    public String getNormalClass() {
+        return normalClass;
     }
 
-    public void setSyxw(String syxw) {
-        this.syxw = syxw;
+    public void setNormalClass(String normalClass) {
+        this.normalClass = normalClass;
     }
 
-    public String getSfl() {
-        return sfl;
+    public String getMinorRepair() {
+        return minorRepair;
     }
 
-    public void setSfl(String sfl) {
-        this.sfl = sfl;
+    public void setMinorRepair(String minorRepair) {
+        this.minorRepair = minorRepair;
     }
 
-    public String getYxfx() {
-        return yxfx;
+    public Date getSettingYear() {
+        return settingYear;
     }
 
-    public void setYxfx(String yxfx) {
-        this.yxfx = yxfx;
+    public void setSettingYear(Date settingYear) {
+        this.settingYear = settingYear;
     }
 
-    public String getSznf() {
-        return sznf;
+    public String getIntroduction() {
+        return introduction;
     }
 
-    public void setSznf(String sznf) {
-        this.sznf = sznf;
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
     }
 
-    public String getZyjj() {
-        return zyjj;
+    public Long getOrgId() {
+        return orgId;
     }
 
-    public void setZyjj(String zyjj) {
-        this.zyjj = zyjj;
+    public void setOrgId(Long orgId) {
+        this.orgId = orgId;
     }
 
-    public String getName() {
-        return name;
+    public String getOrgName() {
+        return orgName;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Long getOrgid() {
-        return orgid;
-    }
-
-    public void setOrgid(Long orgid) {
-        this.orgid = orgid;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setOrgName(String orgName) {
+        this.orgName = orgName;
     }
 }

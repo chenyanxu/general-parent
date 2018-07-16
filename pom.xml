@@ -84,6 +84,7 @@
 
     <modules>
         <module>major-parent</module>
+        <module>course-parent</module>
     </modules>
 
     <!--<reporting>-->
