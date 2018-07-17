@@ -10,7 +10,7 @@ import java.io.Serializable;
 /**
  * Created by sunlf on 2015/10/26.
  */
-public abstract class BaseAdminDao<T extends BaseTreeExtendEntity, PK extends Serializable> extends BaseTreeExtendEntityDao<T, PK> {
+public abstract class BaseBeanDao<T extends BaseTreeExtendEntity, PK extends Serializable> extends BaseTreeExtendEntityDao<T, PK> {
     @Override
     @PersistenceContext(unitName = "general-course-unit")
     public void setEntityManager(EntityManager em) {

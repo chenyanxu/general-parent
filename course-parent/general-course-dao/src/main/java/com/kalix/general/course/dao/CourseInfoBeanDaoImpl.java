@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2017/3/3.
  */
-public class CourseInfoBeanDaoImpl extends BaseAdminDao<CourseInfoBean, Long> implements ICourseInfoBeanDao {
+public class CourseInfoBeanDaoImpl extends BaseBeanDao<CourseInfoBean, Long> implements ICourseInfoBeanDao {
     private IMajorInfoBeanDao majorInfoBeanDao;
 
     @Override
