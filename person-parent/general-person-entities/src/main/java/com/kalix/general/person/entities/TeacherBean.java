@@ -31,7 +31,7 @@ public class TeacherBean extends PersistentEntity {
     @ApiModelProperty(value = "学位", example = "学士学位")
     private String degree;
     @ApiModelProperty(value = "职称", example = "高级教师")
-    private Long positionalTitles;  //职称,字典[职称]
+    private Integer positionalTitles;  //职称,字典[职称]
     @ApiModelProperty(value = "入校年份/启聘年份", example = "2017")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy", timezone = "GMT+8")
     private Date entranceYear;
@@ -40,10 +40,12 @@ public class TeacherBean extends PersistentEntity {
     private String nation;
     @ApiModelProperty(value = "籍贯", example = "吉林省")
     private String placeOfOrigin;
+    @ApiModelProperty(value = "现住址", example = "吉林省长春市")
+    private String address;
     @ApiModelProperty(value = "身份证号", example = "220***************")
     private String identificationCard;
     @ApiModelProperty(value = "岗位", example = "0")
-    private Integer position;       //岗位，字典[岗位]
+    private Integer position;       //岗位，字典[岗位名称]
     @ApiModelProperty(value = "是否在岗/是否聘任：（0-否 1-是）", allowableValues = "0,1", example = "1")
     private Integer beOnDuty = 1;
     @ApiModelProperty(value = "联系电话", example = "043288888888")
@@ -73,7 +75,7 @@ public class TeacherBean extends PersistentEntity {
     @Transient
     private String orgName;         //所在单位名称
 
-    private Integer beOnExternal;   //是否外聘，0-在编，1-外聘
+    private Integer beOnExternal;   //是否外聘(教师类别)，0-在编，1-外聘
     private String originUnit;      //所属单位
 
     public String getCode() {
@@ -124,11 +126,11 @@ public class TeacherBean extends PersistentEntity {
         this.degree = degree;
     }
 
-    public Long getPositionalTitles() {
+    public Integer getPositionalTitles() {
         return positionalTitles;
     }
 
-    public void setPositionalTitles(Long positionalTitles) {
+    public void setPositionalTitles(Integer positionalTitles) {
         this.positionalTitles = positionalTitles;
     }
 
@@ -162,6 +164,14 @@ public class TeacherBean extends PersistentEntity {
 
     public void setPlaceOfOrigin(String placeOfOrigin) {
         this.placeOfOrigin = placeOfOrigin;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getIdentificationCard() {

@@ -32,17 +32,19 @@ public class ResearcherBean extends PersistentEntity {
     private String nation;
     @ApiModelProperty(value = "籍贯", example = "吉林省长春市")
     private String placeOfOrigin;
+    @ApiModelProperty(value = "现住址", example = "吉林省长春市")
+    private String address;
     @ApiModelProperty(value = "联系电话", example = "13704310431")
     private String phone;
     @ApiModelProperty(value = "电子邮件", example = "xxxxxxxxxxx@qq.com")
     private String email;
     @ApiModelProperty(value = "最初职称", example = "助教")
-    private String firstTitle;
+    private Integer firstTitle; //职称,字典[职称]
     @ApiModelProperty(value = "最初职称评定时间", example = "2010-02-01")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date firstEvaluateDate;
     @ApiModelProperty(value = "最后职称", example = "讲师")
-    private String lastTitle;
+    private Integer lastTitle;  //职称,字典[职称]
     @ApiModelProperty(value = "最后职称评定时间", example = "2015-02-01")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date lastEvaluateDate;
@@ -50,6 +52,9 @@ public class ResearcherBean extends PersistentEntity {
     private String education;
     @ApiModelProperty(value = "最后学位", example = "学士学位")
     private String degree;
+    @ApiModelProperty(value = "入校年份", example = "2017")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy", timezone = "GMT+8")
+    private Date entranceYear;
     @ApiModelProperty(value = "毕业院校", example = "xxxx大学")
     private String school;
     @ApiModelProperty(value = "研究方向", example = "xxxx专业")
@@ -116,6 +121,14 @@ public class ResearcherBean extends PersistentEntity {
         this.placeOfOrigin = placeOfOrigin;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public String getPhone() {
         return phone;
     }
@@ -132,11 +145,11 @@ public class ResearcherBean extends PersistentEntity {
         this.email = email;
     }
 
-    public String getFirstTitle() {
+    public Integer getFirstTitle() {
         return firstTitle;
     }
 
-    public void setFirstTitle(String firstTitle) {
+    public void setFirstTitle(Integer firstTitle) {
         this.firstTitle = firstTitle;
     }
 
@@ -148,11 +161,11 @@ public class ResearcherBean extends PersistentEntity {
         this.firstEvaluateDate = firstEvaluateDate;
     }
 
-    public String getLastTitle() {
+    public Integer getLastTitle() {
         return lastTitle;
     }
 
-    public void setLastTitle(String lastTitle) {
+    public void setLastTitle(Integer lastTitle) {
         this.lastTitle = lastTitle;
     }
 
@@ -178,6 +191,14 @@ public class ResearcherBean extends PersistentEntity {
 
     public void setDegree(String degree) {
         this.degree = degree;
+    }
+
+    public Date getEntranceYear() {
+        return entranceYear;
+    }
+
+    public void setEntranceYear(Date entranceYear) {
+        this.entranceYear = entranceYear;
     }
 
     public String getSchool() {
