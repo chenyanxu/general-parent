@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- default-activation="lazy" -->
+<blueprint xmlns:jpa="http://aries.apache.org/xmlns/jpa/v2.0.0"
+           xmlns:tx="http://aries.apache.org/xmlns/transactions/v1.2.0"
+           xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+    <jpa:enable/>
+    <tx:enable-annotations/>
+
+    <!--学校信息dao-->
+    <bean id="schoolInfoBeanDaoImpl" class="com.kalix.general.org.dao.SchoolInfoBeanDaoImpl"> <!--init-method="init">-->
+        <tx:transaction method="*" value="Required"/>
+    </bean>
+    <service id="schoolInfoBeanDao" ref="schoolInfoBeanDaoImpl" interface="com.kalix.general.org.api.dao.ISchoolInfoBeanDao"/>
+
+    <!--校区信息dao-->
+    <bean id="schoolZoneBeanDaoImpl" class="com.kalix.general.org.dao.SchoolZoneBeanDaoImpl"> <!--init-method="init">-->
+        <tx:transaction method="*" value="Required"/>
+    </bean>
+    <service id="schoolZoneBeanDao" ref="schoolZoneBeanDaoImpl" interface="com.kalix.general.org.api.dao.ISchoolZoneBeanDao"/>
+</blueprint>
