@@ -32,7 +32,7 @@ public class MajorInfoBean extends BaseTreeExtendEntity {
     private Integer subjectType;   // 所属学科，字典[学科]
     private String period;         // 学制(学习年限)
     private String trainingLevel;  // 培养层次
-    private Integer available = 1; // 状态，是否可用：（0-不可用 1-可用）
+    private Integer available = 1; // 状态，是否可用：（0-不可用 1-可用），字典[状态]
     private String degree;         // 授予学位
     private String normalClass;    // 师范类
     private String minorRepair;    // 允许辅修
