@@ -24,26 +24,26 @@ import java.util.Date;
 @Table(name = "general_major_info")
 public class MajorInfoBean extends BaseTreeExtendEntity {
     @Column(unique = true)
-    private String code;           //专业代码
+    private String code;           // 专业代码
     @Column(unique = true)
-    private String standardCode;   //国标专业代码
-    private String cnName;         //中文名称
-    private String enName;         //英文名称
-    private Integer subjectType;   //所属学科[字典:所属学科]
-    private String period;         //学制(学习年限)
-    private String trainingLevel;  //培养层次
-    private Integer available = 1; //状态，是否可用：（0-不可用 1-可用）
-    private String degree;         //授予学位
-    private String normalClass;    //师范类
-    private String minorRepair;    //允许辅修
+    private String standardCode;   // 国标专业代码
+    private String cnName;         // 中文名称
+    private String enName;         // 英文名称
+    private Integer subjectType;   // 所属学科，字典[学科]
+    private String period;         // 学制(学习年限)
+    private String trainingLevel;  // 培养层次
+    private Integer available = 1; // 状态，是否可用：（0-不可用 1-可用）
+    private String degree;         // 授予学位
+    private String normalClass;    // 师范类
+    private String minorRepair;    // 允许辅修
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy", timezone = "GMT+8")
-    private Date settingYear;      //设置年份
-    private String introduction;   //专业简介
+    private Date settingYear;      // 设置年份
+    private String introduction;   // 专业简介
 
     @Transient
-    private Long orgId;            //所属院(系)部id
+    private Long orgId;            // 所属院(系)部id
     @Transient
-    private String orgName;        //所属院(系)部名称
+    private String orgName;        // 所属院(系)部名称
 
     public String getCode() {
         return code;
