@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 public abstract class BaseBeanDao<T extends BaseTreeExtendEntity, PK extends Serializable> extends BaseTreeExtendEntityDao<T, PK> {
     @Override
-    @PersistenceContext(unitName = "general-major-unit")
+    @PersistenceContext(unitName = "general-teaching-unit")
     public void setEntityManager(EntityManager em) {
         super.setEntityManager(em);
     }
