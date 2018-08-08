@@ -27,8 +27,13 @@
             <artifactId>general-course-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.kalix.general.major</groupId>
-            <artifactId>general-major-api</artifactId>
+            <groupId>com.kalix.general.teaching</groupId>
+            <artifactId>general-teaching-api</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.kalix.general.teaching</groupId>
+            <artifactId>general-teaching-entities</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

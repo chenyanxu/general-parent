@@ -3,8 +3,8 @@ package com.kalix.general.course.dao;
 import com.kalix.framework.core.api.persistence.JsonData;
 import com.kalix.general.course.api.dao.ICourseInfoBeanDao;
 import com.kalix.general.course.entities.CourseInfoBean;
-import com.kalix.general.major.api.dao.IMajorInfoBeanDao;
-import com.kalix.general.major.entities.MajorInfoBean;
+import com.kalix.general.teaching.api.dao.IMajorInfoBeanDao;
+import com.kalix.general.teaching.entities.MajorInfoBean;
 
 import java.util.List;
 

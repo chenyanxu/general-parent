@@ -83,7 +83,7 @@
     </build>
 
     <modules>
-        <module>major-parent</module>
+        <module>teaching-parent</module>
         <module>course-parent</module>
         <module>person-parent</module>
         <module>org-parent</module>

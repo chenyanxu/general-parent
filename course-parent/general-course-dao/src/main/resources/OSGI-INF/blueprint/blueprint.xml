@@ -6,7 +6,7 @@
            xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
     <jpa:enable/>
     <tx:enable-annotations/>
-    <reference id="majorInfoBeanDao" interface="com.kalix.general.major.api.dao.IMajorInfoBeanDao"/>
+    <reference id="majorInfoBeanDao" interface="com.kalix.general.teaching.api.dao.IMajorInfoBeanDao"/>
 
     <!--课程信息dao-->
     <bean id="courseInfoBeanDaoImpl"

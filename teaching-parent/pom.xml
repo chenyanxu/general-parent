@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>general-parent</artifactId>
+        <groupId>com.kalix.general</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.kalix.general.teaching</groupId>
+    <artifactId>teaching-parent</artifactId>
+    <name>Kalix General Teaching Parent</name>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>general-teaching-entities</module>
+        <module>general-teaching-api</module>
+        <module>general-teaching-biz</module>
+        <module>general-teaching-dao</module>
+        <module>general-teaching-rest</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.kalix.general.teaching</groupId>
+                <artifactId>general-teaching-entities</artifactId>
+                <version>${project.general.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kalix.general.teaching</groupId>
+                <artifactId>general-teaching-api</artifactId>
+                <version>${project.general.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
