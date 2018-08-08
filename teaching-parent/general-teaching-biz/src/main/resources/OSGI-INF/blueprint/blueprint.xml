@@ -10,5 +10,5 @@
         <property name="dao" ref="majorInfoBeanDao"/>
     </bean>
     <service id="majorInfoBeanService" ref="majorInfoBeanServiceImpl"
-             interface="IMajorInfoBeanService"/>
+             interface="com.kalix.general.teaching.api.biz.IMajorInfoBeanService"/>
 </blueprint>

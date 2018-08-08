@@ -5,7 +5,7 @@ import com.kalix.framework.core.api.persistence.JsonStatus;
 import com.kalix.framework.core.api.web.model.QueryDTO;
 import com.kalix.framework.core.impl.biz.ShiroGenericBizServiceImpl;
 import com.kalix.framework.core.util.Assert;
-import com.kalix.general.major.api.biz.IMajorInfoBeanService;
+import com.kalix.general.teaching.api.biz.IMajorInfoBeanService;
 import com.kalix.general.person.api.biz.IStudentBeanService;
 import com.kalix.general.person.api.dao.IStudentBeanDao;
 import com.kalix.general.person.entities.StudentBean;

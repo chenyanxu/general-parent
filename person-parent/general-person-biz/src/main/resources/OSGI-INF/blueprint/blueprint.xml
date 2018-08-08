@@ -9,7 +9,7 @@
     <reference id="studentBeanDao" interface="com.kalix.general.person.api.dao.IStudentBeanDao"/>
     <reference id="researcherBeanDao" interface="com.kalix.general.person.api.dao.IResearcherBeanDao"/>
     <reference id="organizationBeanService" interface="com.kalix.admin.core.api.biz.IOrganizationBeanService"/>
-    <reference id="majorBeanService" interface="IMajorInfoBeanService"/>
+    <reference id="majorBeanService" interface="com.kalix.general.teaching.api.biz.IMajorInfoBeanService"/>
 
     <!--教师服务注册-->
     <bean id="teacherBeanServiceImpl" class="com.kalix.general.person.biz.TeacherBeanServiceImpl">

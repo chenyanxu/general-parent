@@ -23,8 +23,8 @@
             <artifactId>general-person-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.kalix.general.major</groupId>
-            <artifactId>general-major-api</artifactId>
+            <groupId>com.kalix.general.teaching</groupId>
+            <artifactId>general-teaching-api</artifactId>
         </dependency>
     </dependencies>
 </project>
