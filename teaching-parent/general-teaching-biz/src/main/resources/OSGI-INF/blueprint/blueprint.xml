@@ -4,8 +4,19 @@
            xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
     <jpa:enable/>
     <tx:enable-annotations/>
+    <reference id="gradeBeanDao" interface="com.kalix.general.teaching.api.dao.IGradeBeanDao"/>
+    <reference id="gradeMajorBeanDao" interface="com.kalix.general.teaching.api.dao.IGradeMajorBeanDao"/>
     <reference id="majorInfoBeanDao" interface="com.kalix.general.teaching.api.dao.IMajorInfoBeanDao"/>
 
+    <!-- 年级服务 -->
+    <bean id="gradeBeanServiceImpl" class="com.kalix.general.teaching.biz.GradeBeanServiceImpl">
+        <property name="dao" ref="gradeBeanDao"/>
+        <property name="gradeMajorBeanDao" ref="gradeMajorBeanDao"/>
+    </bean>
+    <service id="gradeBeanService" ref="gradeBeanServiceImpl"
+             interface="com.kalix.general.teaching.api.biz.IGradeBeanService"/>
+
+    <!-- 专业服务 -->
     <bean id="majorInfoBeanServiceImpl" class="com.kalix.general.teaching.biz.MajorInfoBeanServiceImpl">
         <property name="dao" ref="majorInfoBeanDao"/>
     </bean>

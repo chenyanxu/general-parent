@@ -3,16 +3,25 @@ package com.kalix.general.teaching.dao;
 import com.kalix.admin.core.api.dao.IOrganizationBeanDao;
 import com.kalix.admin.core.entities.OrganizationBean;
 import com.kalix.framework.core.api.persistence.JsonData;
+import com.kalix.framework.core.impl.dao.BaseTreeExtendEntityDao;
 import com.kalix.general.teaching.api.dao.IMajorInfoBeanDao;
 import com.kalix.general.teaching.entities.MajorInfoBean;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
  * Created by Administrator on 2017/3/3.
  */
-public class MajorInfoBeanDaoImpl extends BaseBeanDao<MajorInfoBean, Long> implements IMajorInfoBeanDao {
+public class MajorInfoBeanDaoImpl extends BaseTreeExtendEntityDao<MajorInfoBean, Long> implements IMajorInfoBeanDao {
     private IOrganizationBeanDao organizationBeanDao;
+
+    @Override
+    @PersistenceContext(unitName = "general-teaching-unit")
+    public void setEntityManager(EntityManager em) {
+        super.setEntityManager(em);
+    }
 
     @Override
     @SuppressWarnings("unchecked")

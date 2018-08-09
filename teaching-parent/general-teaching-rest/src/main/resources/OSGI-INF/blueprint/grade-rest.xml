@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+       http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
+    <reference id="gradeService" interface="com.kalix.general.teaching.api.biz.IGradeBeanService"/>
+
+    <!-- 年级 -->
+    <bean id="gradeRoute" class="com.kalix.framework.core.impl.camel.BaseRouteBuilder">
+        <property name="beanName" value="com.kalix.general.teaching.entities.GradeBean"/>
+        <property name="rests">
+            <list>
+                <bean class="com.kalix.framework.core.api.camel.CustomRest">
+                    <property name="path" value="/grades/{gradeId}/majorids"/>
+
+                    <property name="getDescription" value="查询指定年级id下的全部专业信息ids"/>
+                    <property name="getOutType" value="java.util.List"/>
+                    <property name="getToUri"
+                              value="bean:gradeService?method=getMajorIdsByGradeId(${header.gradeId})"/>
+
+                    <property name="postDescription" value="保存指定年级id的全部专业信息ids"/>
+                    <property name="inType" value="java.util.List"/>
+                    <property name="postOutType" value="com.kalix.framework.core.api.persistence.JsonStatus"/>
+                    <property name="postToUri"
+                              value="bean:gradeService?method=saveGradeMajors(${body})"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <camelContext id="gradeCamel" xmlns="http://camel.apache.org/schema/blueprint">
+        <routeBuilder ref="gradeRoute"/>
+    </camelContext>
+</blueprint>

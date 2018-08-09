@@ -4,8 +4,9 @@
            xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
        http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
     <reference id="majorinfoService" interface="com.kalix.general.teaching.api.biz.IMajorInfoBeanService"/>
+
     <bean id="majorInfoRoute" class="com.kalix.framework.core.impl.camel.BaseRouteBuilder">
-        <property name="beanName" value="MajorInfoBean"/>
+        <property name="beanName" value="com.kalix.general.teaching.entities.MajorInfoBean"/>
         <property name="rests">
             <list>
                 <bean class="com.kalix.framework.core.api.camel.CustomRest">
@@ -17,7 +18,7 @@
                               value="bean:majorinfoService?method=getEntitiesByFK(${header.orgId},${header.page},${header.limit},${header.jsonStr},${header.sort})"/>
 
                     <property name="postDescription" value="保存指定院(系)部id的专业信息"/>
-                    <property name="inType" value="MajorInfoBean"/>
+                    <property name="inType" value="com.kalix.general.teaching.entities.MajorInfoBean"/>
                     <property name="postOutType" value="com.kalix.framework.core.api.persistence.JsonStatus"/>
                     <property name="postToUri"
                               value="bean:majorinfoService?method=saveEntityByFK(${header.orgId},${body})"/>
@@ -26,7 +27,7 @@
                     <property name="path" value="/orgs/{orgId}/majorinfos/{id}"/>
 
                     <property name="putDescription" value="修改指定院(系)部id下的专业信息"/>
-                    <property name="inType" value="MajorInfoBean"/>
+                    <property name="inType" value="com.kalix.general.teaching.entities.MajorInfoBean"/>
                     <property name="putOutType" value="com.kalix.framework.core.api.persistence.JsonStatus"/>
                     <property name="putToUri"
                               value="bean:majorinfoService?method=updateEntityByFK(${header.orgId},${body})"/>

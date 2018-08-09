@@ -8,13 +8,23 @@
     <tx:enable-annotations/>
     <reference id="organizationBeanDao" interface="com.kalix.admin.core.api.dao.IOrganizationBeanDao"/>
 
+    <!--年级dao-->
+    <bean id="gradeBeanDaoImpl" class="com.kalix.general.teaching.dao.GradeBeanDaoImpl">
+        <tx:transaction method="*" value="Required"/>
+    </bean>
+    <service id="gradeBeanDao" ref="gradeBeanDaoImpl" interface="com.kalix.general.teaching.api.dao.IGradeBeanDao"/>
+
     <!--专业信息dao-->
     <bean id="majorInfoBeanDaoImpl"
           class="com.kalix.general.teaching.dao.MajorInfoBeanDaoImpl"> <!--init-method="init">-->
         <tx:transaction method="*" value="Required"/>
         <property name="organizationBeanDao" ref="organizationBeanDao"/>
     </bean>
-
     <service id="majorInfoBeanDao" ref="majorInfoBeanDaoImpl" interface="com.kalix.general.teaching.api.dao.IMajorInfoBeanDao"/>
 
+    <!--年级与专业关联dao-->
+    <bean id="gradeMajorBeanDaoImpl" class="com.kalix.general.teaching.dao.GradeMajorBeanDaoImpl">
+        <tx:transaction method="*" value="Required"/>
+    </bean>
+    <service id="gradeMajorBeanDao" ref="gradeMajorBeanDaoImpl" interface="com.kalix.general.teaching.api.dao.IGradeMajorBeanDao"/>
 </blueprint>
