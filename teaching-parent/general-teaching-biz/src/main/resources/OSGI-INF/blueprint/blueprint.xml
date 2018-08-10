@@ -13,6 +13,7 @@
     <bean id="gradeBeanServiceImpl" class="com.kalix.general.teaching.biz.GradeBeanServiceImpl">
         <property name="dao" ref="gradeBeanDao"/>
         <property name="gradeMajorBeanDao" ref="gradeMajorBeanDao"/>
+        <property name="majorInfoBeanDao" ref="majorInfoBeanDao"/>
     </bean>
     <service id="gradeBeanService" ref="gradeBeanServiceImpl"
              interface="com.kalix.general.teaching.api.biz.IGradeBeanService"/>

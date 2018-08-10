@@ -24,6 +24,15 @@
                     <property name="postToUri"
                               value="bean:gradeService?method=saveGradeMajors(${body})"/>
                 </bean>
+
+                <bean class="com.kalix.framework.core.api.camel.CustomRest">
+                    <property name="path" value="/grades/{gradeId}/majorinfos"/>
+
+                    <property name="getDescription" value="查询指定年级id下的全部专业信息"/>
+                    <property name="getOutType" value="com.kalix.framework.core.api.persistence.JsonData"/>
+                    <property name="getToUri"
+                              value="bean:gradeService?method=getMajorInfosByGradeId(${header.gradeId})"/>
+                </bean>
             </list>
         </property>
     </bean>

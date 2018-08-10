@@ -1,5 +1,6 @@
 package com.kalix.general.teaching.biz;
 
+import com.kalix.framework.core.api.persistence.JsonData;
 import com.kalix.framework.core.api.persistence.JsonStatus;
 import com.kalix.framework.core.impl.biz.ShiroGenericBizServiceImpl;
 import com.kalix.framework.core.util.Assert;
@@ -7,8 +8,10 @@ import com.kalix.framework.core.util.StringUtils;
 import com.kalix.general.teaching.api.biz.IGradeBeanService;
 import com.kalix.general.teaching.api.dao.IGradeBeanDao;
 import com.kalix.general.teaching.api.dao.IGradeMajorBeanDao;
+import com.kalix.general.teaching.api.dao.IMajorInfoBeanDao;
 import com.kalix.general.teaching.entities.GradeBean;
 import com.kalix.general.teaching.entities.GradeMajorBean;
+import com.kalix.general.teaching.entities.MajorInfoBean;
 
 import javax.transaction.Transactional;
 import java.text.SimpleDateFormat;
@@ -22,6 +25,7 @@ public class GradeBeanServiceImpl extends ShiroGenericBizServiceImpl<IGradeBeanD
 
     private static final String FUNCTION_NAME = "年级";
     private IGradeMajorBeanDao gradeMajorBeanDao;
+    private IMajorInfoBeanDao majorInfoBeanDao;
 
     @Override
     public boolean isDelete(Long entityId, JsonStatus status) {
@@ -111,7 +115,7 @@ public class GradeBeanServiceImpl extends ShiroGenericBizServiceImpl<IGradeBeanD
     }
 
     /**
-     * 根据年级ID获得所有专业
+     * 根据年级ID获得所有专业信息ids
      *
      * @param id
      * @return
@@ -130,7 +134,35 @@ public class GradeBeanServiceImpl extends ShiroGenericBizServiceImpl<IGradeBeanD
         return majorIds;
     }
 
+    /**
+     * 根据年级ID获得所有专业信息
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public JsonData getMajorInfosByGradeId(Long id) {
+        JsonData jsonData = new JsonData();
+        List majorInfos = new ArrayList<>();
+        List<GradeMajorBean> gradeMajorBeans = gradeMajorBeanDao.find("select ob from GradeMajorBean ob where ob.gradeId = ?1", id);
+        if (gradeMajorBeans != null && !gradeMajorBeans.isEmpty()) {
+            for (GradeMajorBean gradeMajorBean : gradeMajorBeans) {
+                if (gradeMajorBean != null && gradeMajorBean.getMajorId().longValue() != 0L) {
+                    MajorInfoBean majorInfoBean = majorInfoBeanDao.get(gradeMajorBean.getMajorId());
+                    majorInfos.add(majorInfoBean);
+                }
+            }
+        }
+        jsonData.setData(majorInfos);
+        jsonData.setTotalCount((long) majorInfos.size());
+        return jsonData;
+    }
+
     public void setGradeMajorBeanDao(IGradeMajorBeanDao gradeMajorBeanDao) {
         this.gradeMajorBeanDao = gradeMajorBeanDao;
+    }
+
+    public void setMajorInfoBeanDao(IMajorInfoBeanDao majorInfoBeanDao) {
+        this.majorInfoBeanDao = majorInfoBeanDao;
     }
 }
