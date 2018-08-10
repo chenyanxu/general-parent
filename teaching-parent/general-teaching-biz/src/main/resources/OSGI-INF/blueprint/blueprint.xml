@@ -7,6 +7,7 @@
     <reference id="gradeBeanDao" interface="com.kalix.general.teaching.api.dao.IGradeBeanDao"/>
     <reference id="gradeMajorBeanDao" interface="com.kalix.general.teaching.api.dao.IGradeMajorBeanDao"/>
     <reference id="majorInfoBeanDao" interface="com.kalix.general.teaching.api.dao.IMajorInfoBeanDao"/>
+    <reference id="classInfoBeanDao" interface="com.kalix.general.teaching.api.dao.IClassInfoBeanDao"/>
 
     <!-- 年级服务 -->
     <bean id="gradeBeanServiceImpl" class="com.kalix.general.teaching.biz.GradeBeanServiceImpl">
@@ -22,4 +23,13 @@
     </bean>
     <service id="majorInfoBeanService" ref="majorInfoBeanServiceImpl"
              interface="com.kalix.general.teaching.api.biz.IMajorInfoBeanService"/>
+
+    <!-- 班级服务 -->
+    <bean id="classInfoBeanServiceImpl" class="com.kalix.general.teaching.biz.ClassInfoBeanServiceImpl">
+        <property name="dao" ref="classInfoBeanDao"/>
+        <property name="gradeBeanService" ref="gradeBeanServiceImpl"/>
+        <property name="majorInfoBeanService" ref="majorInfoBeanServiceImpl"/>
+    </bean>
+    <service id="classInfoBeanService" ref="classInfoBeanServiceImpl"
+             interface="com.kalix.general.teaching.api.biz.IClassInfoBeanService"/>
 </blueprint>
