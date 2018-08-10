@@ -23,7 +23,10 @@ import java.util.Date;
 public class ClassInfoBean extends PersistentEntity {
     private Long gradeId;          // 年级Id
     private Long majorId;          // 专业Id
-    private String code;           // 班级代码,自动生成(年级4位+专业代码+序号3位)
+    @Column(unique = true)
+    private String code;           // 班级代码,自动生成(年级4位+专业代码4位+序号2位)
+    @Transient
+    private String xh;             // 班级代码后两位序号
     private String name;           // 班级名称
 
     @Transient
@@ -78,5 +81,13 @@ public class ClassInfoBean extends PersistentEntity {
 
     public void setMajorName(String majorName) {
         this.majorName = majorName;
+    }
+
+    public String getXh() {
+        return xh;
+    }
+
+    public void setXh(String xh) {
+        this.xh = xh;
     }
 }
