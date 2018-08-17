@@ -3,6 +3,8 @@ package com.kalix.general.teaching.api.biz;
 import com.kalix.framework.core.api.biz.IBizService;
 import com.kalix.framework.core.api.persistence.JsonData;
 import com.kalix.framework.core.api.persistence.JsonStatus;
+import com.kalix.framework.core.api.web.model.BaseTreeDTO;
+import com.kalix.general.teaching.dto.model.GradeMajorDTO;
 import com.kalix.general.teaching.entities.GradeBean;
 
 import java.util.List;
@@ -35,4 +37,12 @@ public interface IGradeBeanService extends IBizService<GradeBean> {
      * @return
      */
     JsonData getMajorInfosByGradeId(Long id);
+
+    /**
+     * 根据年级查询专业信息树(null或""代表查全部)
+     *
+     * @param grade
+     * @return
+     */
+    BaseTreeDTO getMajorTreeByGrade(String grade);
 }

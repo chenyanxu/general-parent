@@ -9,22 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>general-teaching-api</artifactId>
-    <name>Kalix General Teaching API</name>
+    <artifactId>general-teaching-dto</artifactId>
+    <name>Kalix General Teaching DTO</name>
     <packaging>bundle</packaging>
 
     <properties>
-        <bundle.symbolicName>com.kalix.general.teaching.api</bundle.symbolicName>
+        <bundle.symbolicName>com.kalix.general.teaching.dto</bundle.symbolicName>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.kalix.general.teaching</groupId>
-            <artifactId>general-teaching-entities</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.kalix.general.teaching</groupId>
-            <artifactId>general-teaching-dto</artifactId>
-        </dependency>
-    </dependencies>
 </project>

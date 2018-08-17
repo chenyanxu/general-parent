@@ -2,6 +2,7 @@ package com.kalix.general.teaching.biz;
 
 import com.kalix.framework.core.api.persistence.JsonData;
 import com.kalix.framework.core.api.persistence.JsonStatus;
+import com.kalix.framework.core.api.web.model.BaseTreeDTO;
 import com.kalix.framework.core.impl.biz.ShiroGenericBizServiceImpl;
 import com.kalix.framework.core.util.Assert;
 import com.kalix.framework.core.util.StringUtils;
@@ -9,13 +10,16 @@ import com.kalix.general.teaching.api.biz.IGradeBeanService;
 import com.kalix.general.teaching.api.dao.IGradeBeanDao;
 import com.kalix.general.teaching.api.dao.IGradeMajorBeanDao;
 import com.kalix.general.teaching.api.dao.IMajorInfoBeanDao;
+import com.kalix.general.teaching.dto.model.GradeMajorDTO;
 import com.kalix.general.teaching.entities.GradeBean;
 import com.kalix.general.teaching.entities.GradeMajorBean;
 import com.kalix.general.teaching.entities.MajorInfoBean;
 
 import javax.transaction.Transactional;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -156,6 +160,60 @@ public class GradeBeanServiceImpl extends ShiroGenericBizServiceImpl<IGradeBeanD
         jsonData.setData(majorInfos);
         jsonData.setTotalCount((long) majorInfos.size());
         return jsonData;
+    }
+
+    /**
+     * 根据年级查询专业信息树(null或""代表查全部)
+     *
+     * @param grade
+     * @return
+     */
+    @Override
+    public BaseTreeDTO getMajorTreeByGrade(String grade) {
+        BaseTreeDTO rtn = new BaseTreeDTO();
+        List<GradeBean> list = new ArrayList<GradeBean>();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+        if (StringUtils.isEmpty(grade)) {
+            list = this.dao.getAll();
+        } else {
+            try {
+                Date date = sdf.parse(grade);
+                String sql = "select * from " + this.dao.getTableName() + " where grade = ?1";
+                list = this.dao.findByNativeSql(sql, GradeBean.class, date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        rtn.setId(-1L);
+        List<BaseTreeDTO> parents = new ArrayList<BaseTreeDTO>();
+        for (int i = 0; i < list.size(); i++) {
+            GradeBean gradeBean = list.get(i);
+            BaseTreeDTO parent = new BaseTreeDTO();
+            parent.setId(gradeBean.getId());
+            parent.setName(sdf.format(gradeBean.getGrade()));
+            parent.setText(sdf.format(gradeBean.getGrade()));
+            parent.setLeaf(false);
+            parent.setParentId(-1L);
+            parent.setParentName("根");
+            List<GradeMajorBean> gradeMajorBeans = gradeMajorBeanDao.find(
+                    "select ob from GradeMajorBean ob where ob.gradeId = ?1", gradeBean.getId());
+            List<BaseTreeDTO> children = new ArrayList<BaseTreeDTO>();
+            for (GradeMajorBean gradeMajorBean : gradeMajorBeans) {
+                MajorInfoBean majorInfoBean = majorInfoBeanDao.get(gradeMajorBean.getMajorId());
+                BaseTreeDTO child = new BaseTreeDTO();
+                child.setId(majorInfoBean.getId());
+                child.setName(majorInfoBean.getCnName());
+                child.setText(majorInfoBean.getCnName());
+                child.setLeaf(true);
+                child.setParentId(gradeBean.getId());
+                child.setParentName(sdf.format(gradeBean.getGrade()));
+                children.add(child);
+            }
+            parent.setChildren(children);
+            parents.add(parent);
+        }
+        rtn.setChildren(parents);
+        return rtn;
     }
 
     public void setGradeMajorBeanDao(IGradeMajorBeanDao gradeMajorBeanDao) {

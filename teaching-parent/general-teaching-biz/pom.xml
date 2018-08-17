@@ -21,5 +21,13 @@
             <groupId>com.kalix.general.teaching</groupId>
             <artifactId>general-teaching-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.kalix.general.teaching</groupId>
+            <artifactId>general-teaching-entities</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kalix.general.teaching</groupId>
+            <artifactId>general-teaching-dto</artifactId>
+        </dependency>
     </dependencies>
 </project>

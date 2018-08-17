@@ -20,6 +20,7 @@
         <module>general-teaching-biz</module>
         <module>general-teaching-dao</module>
         <module>general-teaching-rest</module>
+        <module>general-teaching-dto</module>
     </modules>
 
     <dependencyManagement>
@@ -32,6 +33,11 @@
             <dependency>
                 <groupId>com.kalix.general.teaching</groupId>
                 <artifactId>general-teaching-api</artifactId>
+                <version>${project.general.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kalix.general.teaching</groupId>
+                <artifactId>general-teaching-dto</artifactId>
                 <version>${project.general.version}</version>
             </dependency>
         </dependencies>
