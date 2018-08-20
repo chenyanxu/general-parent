@@ -6,6 +6,7 @@ Bundle-Activator: ${bundle.namespace}.internal.InitActivator
 Import-Package: com.kalix.framework.core.api.biz,\
                 com.kalix.framework.core.api.persistence,\
                 com.kalix.general.teaching.entities,\
-                com.kalix.framework.core.api.web.model,*
+                com.kalix.framework.core.api.web.model,\
+                com.kalix.admin.core.entities,*
 Include-Resource: target/classes
 Bundle-Category: Kalix General Teaching

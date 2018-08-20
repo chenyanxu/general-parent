@@ -37,20 +37,22 @@
                     <property name="deleteToUri"
                               value="bean:majorinfoService?method=deleteEntityByFK(${header.orgId},${header.id})"/>
                 </bean>
-                <!--<bean class="com.kalix.framework.core.api.camel.CustomRest">-->
-                    <!--<property name="path" value="/majorinfosTree"/>-->
-                    <!--<property name="getDescription" value="查询树型结构专业信息"/>-->
-                    <!--<property name="getOutType" value="com.kalix.framework.core.api.persistence.BaseTreeEntity"/>-->
-                    <!--<property name="getToUri"-->
-                              <!--value="bean:majorinfoService?method=getEntitiesByFK(${header.orgId},${header.page},${header.limit},${header.jsonStr},${header.sort})"/>-->
-                <!--</bean>-->
-                <!--<bean class="com.kalix.framework.core.api.camel.CustomRest">-->
-                    <!--<property name="path" value="/majorinfosTree/{orgId}"/>-->
-                    <!--<property name="getDescription" value="查询指定院(系)部id下的树型结构专业信息"/>-->
-                    <!--<property name="getOutType" value="com.kalix.framework.core.api.persistence.JsonData"/>-->
-                    <!--<property name="getToUri"-->
-                              <!--value="bean:majorinfoService?method=getEntitiesByFK(${header.orgId},${header.page},${header.limit},${header.jsonStr},${header.sort})"/>-->
-                <!--</bean>-->
+                <bean class="com.kalix.framework.core.api.camel.CustomRest">
+                    <property name="path" value="/majors/gradetree"/>
+
+                    <property name="getDescription" value="查询专业年级树"/>
+                    <property name="getOutType" value="com.kalix.framework.core.api.web.model.BaseTreeDTO"/>
+                    <property name="getToUri"
+                              value="bean:majorinfoService?method=getTreeByNodeId(${header.majorId})"/>
+                </bean>
+                <bean class="com.kalix.framework.core.api.camel.CustomRest">
+                    <property name="path" value="/majors/gradetree/{majorId}"/>
+
+                    <property name="getDescription" value="查询专业年级树"/>
+                    <property name="getOutType" value="com.kalix.framework.core.api.web.model.BaseTreeDTO"/>
+                    <property name="getToUri"
+                              value="bean:majorinfoService?method=getTreeByNodeId(${header.majorId})"/>
+                </bean>
             </list>
         </property>
     </bean>

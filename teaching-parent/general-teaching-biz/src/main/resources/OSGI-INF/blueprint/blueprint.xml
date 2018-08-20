@@ -8,6 +8,7 @@
     <reference id="gradeMajorBeanDao" interface="com.kalix.general.teaching.api.dao.IGradeMajorBeanDao"/>
     <reference id="majorInfoBeanDao" interface="com.kalix.general.teaching.api.dao.IMajorInfoBeanDao"/>
     <reference id="classInfoBeanDao" interface="com.kalix.general.teaching.api.dao.IClassInfoBeanDao"/>
+    <reference id="organizationBeanDao" interface="com.kalix.admin.core.api.dao.IOrganizationBeanDao"/>
 
     <!-- 年级服务 -->
     <bean id="gradeBeanServiceImpl" class="com.kalix.general.teaching.biz.GradeBeanServiceImpl">
@@ -21,6 +22,9 @@
     <!-- 专业服务 -->
     <bean id="majorInfoBeanServiceImpl" class="com.kalix.general.teaching.biz.MajorInfoBeanServiceImpl">
         <property name="dao" ref="majorInfoBeanDao"/>
+        <property name="gradeMajorBeanDao" ref="gradeMajorBeanDao"/>
+        <property name="gradeBeanDao" ref="gradeBeanDao"/>
+        <property name="organizationBeanDao" ref="organizationBeanDao"/>
     </bean>
     <service id="majorInfoBeanService" ref="majorInfoBeanServiceImpl"
              interface="com.kalix.general.teaching.api.biz.IMajorInfoBeanService"/>

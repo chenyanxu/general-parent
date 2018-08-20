@@ -37,7 +37,16 @@
                 <bean class="com.kalix.framework.core.api.camel.CustomRest">
                     <property name="path" value="/grades/majortree"/>
 
-                    <property name="getDescription" value="查询指定年级(包括全部年级)下的专业信息（树状结构）"/>
+                    <property name="getDescription" value="查询包括全部年级下的专业信息（树状结构）"/>
+                    <property name="getOutType" value="com.kalix.framework.core.api.web.model.BaseTreeDTO"/>
+                    <property name="getToUri"
+                              value="bean:gradeService?method=getMajorTreeByGrade(${header.grade})"/>
+                </bean>
+
+                <bean class="com.kalix.framework.core.api.camel.CustomRest">
+                    <property name="path" value="/grades/majortree/{grade}"/>
+
+                    <property name="getDescription" value="查询指定年级下的专业信息（树状结构）"/>
                     <property name="getOutType" value="com.kalix.framework.core.api.web.model.BaseTreeDTO"/>
                     <property name="getToUri"
                               value="bean:gradeService?method=getMajorTreeByGrade(${header.grade})"/>
