@@ -9,6 +9,9 @@
     <reference id="majorInfoBeanDao" interface="com.kalix.general.teaching.api.dao.IMajorInfoBeanDao"/>
     <reference id="classInfoBeanDao" interface="com.kalix.general.teaching.api.dao.IClassInfoBeanDao"/>
     <reference id="organizationBeanDao" interface="com.kalix.admin.core.api.dao.IOrganizationBeanDao"/>
+    <reference id="lessonInfoBeanDao" interface="com.kalix.general.teaching.api.dao.ILessonInfoBeanDao"/>
+    <reference id="practiceInfoBeanDao" interface="com.kalix.general.teaching.api.dao.IPracticeInfoBeanDao"/>
+    <reference id="organizationBeanService" interface="com.kalix.admin.core.api.biz.IOrganizationBeanService"/>
 
     <!-- 年级服务 -->
     <bean id="gradeBeanServiceImpl" class="com.kalix.general.teaching.biz.GradeBeanServiceImpl">
@@ -37,4 +40,20 @@
     </bean>
     <service id="classInfoBeanService" ref="classInfoBeanServiceImpl"
              interface="com.kalix.general.teaching.api.biz.IClassInfoBeanService"/>
+
+    <!-- 理论课程服务 -->
+    <bean id="lessonInfoBeanServiceImpl" class="com.kalix.general.teaching.biz.LessonInfoBeanServiceImpl">
+        <property name="dao" ref="lessonInfoBeanDao"/>
+        <property name="organizationBeanServiceImpl" ref="organizationBeanService"/>
+    </bean>
+    <service id="lessonInfoBeanService" ref="lessonInfoBeanServiceImpl"
+             interface="com.kalix.general.teaching.api.biz.ILessonInfoBeanService"/>
+
+    <!-- 实践环节服务 -->
+    <bean id="practiceInfoBeanServiceImpl" class="com.kalix.general.teaching.biz.PracticeInfoBeanServiceImpl">
+        <property name="dao" ref="practiceInfoBeanDao"/>
+        <property name="organizationBeanServiceImpl" ref="organizationBeanService"/>
+    </bean>
+    <service id="practiceInfoBeanService" ref="practiceInfoBeanServiceImpl"
+             interface="com.kalix.general.teaching.api.biz.IPracticeInfoBeanService"/>
 </blueprint>

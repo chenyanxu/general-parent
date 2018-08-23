@@ -35,4 +35,18 @@
         <property name="majorInfoBeanDao" ref="majorInfoBeanDaoImpl"/>
     </bean>
     <service id="classInfoBeanDao" ref="classInfoBeanDaoImpl" interface="com.kalix.general.teaching.api.dao.IClassInfoBeanDao"/>
+
+    <!--理论课程信息dao-->
+    <bean id="lessonInfoBeanDaoImpl"
+          class="com.kalix.general.teaching.dao.LessonInfoBeanDaoImpl"> <!--init-method="init">-->
+        <tx:transaction method="*" value="Required"/>
+    </bean>
+    <service id="lessonInfoBeanDao" ref="lessonInfoBeanDaoImpl" interface="com.kalix.general.teaching.api.dao.ILessonInfoBeanDao"/>
+
+    <!--实践环节信息dao-->
+    <bean id="practiceInfoBeanDaoImpl"
+          class="com.kalix.general.teaching.dao.PracticeInfoBeanDaoImpl"> <!--init-method="init">-->
+        <tx:transaction method="*" value="Required"/>
+    </bean>
+    <service id="practiceInfoBeanDao" ref="practiceInfoBeanDaoImpl" interface="com.kalix.general.teaching.api.dao.IPracticeInfoBeanDao"/>
 </blueprint>
