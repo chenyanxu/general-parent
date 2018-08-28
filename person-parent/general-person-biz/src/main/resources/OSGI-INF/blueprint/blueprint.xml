@@ -10,6 +10,7 @@
     <reference id="researcherBeanDao" interface="com.kalix.general.person.api.dao.IResearcherBeanDao"/>
     <reference id="organizationBeanService" interface="com.kalix.admin.core.api.biz.IOrganizationBeanService"/>
     <reference id="majorBeanService" interface="com.kalix.general.teaching.api.biz.IMajorInfoBeanService"/>
+    <reference id="classBeanService" interface="com.kalix.general.teaching.api.biz.IClassInfoBeanService"/>
 
     <!--教师服务注册-->
     <bean id="teacherBeanServiceImpl" class="com.kalix.general.person.biz.TeacherBeanServiceImpl">
@@ -23,6 +24,7 @@
     <bean id="studentBeanServiceImpl" class="com.kalix.general.person.biz.StudentBeanServiceImpl">
         <property name="dao" ref="studentBeanDao"/>
         <property name="majorBeanService" ref="majorBeanService"/>
+        <property name="classBeanService" ref="classBeanService"/>
     </bean>
     <service id="studentBeanService" ref="studentBeanServiceImpl"
              interface="com.kalix.general.person.api.biz.IStudentBeanService"/>

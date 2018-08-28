@@ -39,6 +39,14 @@ public interface IGradeBeanService extends IBizService<GradeBean> {
     JsonData getMajorInfosByGradeId(Long id);
 
     /**
+     * 根据年级获得所有专业信息
+     *
+     * @param grade
+     * @return
+     */
+    JsonData getMajorInfosByGrade(String grade);
+
+    /**
      * 根据年级查询专业信息树(null或""代表查全部)
      *
      * @param grade

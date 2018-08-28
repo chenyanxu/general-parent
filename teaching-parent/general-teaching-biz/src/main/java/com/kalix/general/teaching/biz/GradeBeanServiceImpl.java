@@ -10,7 +10,6 @@ import com.kalix.general.teaching.api.biz.IGradeBeanService;
 import com.kalix.general.teaching.api.dao.IGradeBeanDao;
 import com.kalix.general.teaching.api.dao.IGradeMajorBeanDao;
 import com.kalix.general.teaching.api.dao.IMajorInfoBeanDao;
-import com.kalix.general.teaching.dto.model.GradeMajorDTO;
 import com.kalix.general.teaching.entities.GradeBean;
 import com.kalix.general.teaching.entities.GradeMajorBean;
 import com.kalix.general.teaching.entities.MajorInfoBean;
@@ -159,6 +158,36 @@ public class GradeBeanServiceImpl extends ShiroGenericBizServiceImpl<IGradeBeanD
         }
         jsonData.setData(majorInfos);
         jsonData.setTotalCount((long) majorInfos.size());
+        return jsonData;
+    }
+
+    /**
+     * 根据年级获得所有专业信息
+     *
+     * @param grade
+     * @return
+     */
+    @Override
+    public JsonData getMajorInfosByGrade(String grade) {
+        JsonData jsonData = new JsonData();
+        List majorInfos = new ArrayList<>();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+        try {
+            Date date = sdf.parse(grade);
+            /*String sql = "select m.* from " + this.majorInfoBeanDao.getTableName() + " m, " +
+                    this.dao.getTableName() + " g, " + this.gradeMajorBeanDao.getTableName() + " j " +
+                    " where g.grade = ?1 and j.gradeid = g.id and j.majorid = m.id";*/
+            String sql = "select m.* from " + this.majorInfoBeanDao.getTableName() + " m where m.id in " +
+                    " (select j.majorid from " + this.dao.getTableName() + " g, " + this.gradeMajorBeanDao.getTableName() + " j " +
+                    " where g.grade = ?1 and j.gradeid = g.id)";
+            majorInfos = this.majorInfoBeanDao.findByNativeSql(sql, MajorInfoBean.class, date);
+            jsonData.setData(majorInfos);
+            jsonData.setTotalCount((long) majorInfos.size());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return jsonData;
     }
 

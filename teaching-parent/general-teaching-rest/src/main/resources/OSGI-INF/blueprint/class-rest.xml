@@ -10,6 +10,14 @@
         <property name="beanName" value="com.kalix.general.teaching.entities.ClassInfoBean"/>
         <property name="rests">
             <list>
+                <bean class="com.kalix.framework.core.api.camel.CustomRest">
+                    <property name="path" value="/getClassInfos"/>
+
+                    <property name="getDescription" value="根据年级和专业id获取所有班级信息"/>
+                    <property name="getOutType" value="com.kalix.framework.core.api.persistence.JsonData"/>
+                    <property name="getToUri"
+                              value="bean:classinfoService?method=getClassInfos(${header.grade},${header.majorId})"/>
+                </bean>
             </list>
         </property>
     </bean>

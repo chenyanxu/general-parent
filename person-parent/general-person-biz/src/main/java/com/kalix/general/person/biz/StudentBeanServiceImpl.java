@@ -5,6 +5,7 @@ import com.kalix.framework.core.api.persistence.JsonStatus;
 import com.kalix.framework.core.api.web.model.QueryDTO;
 import com.kalix.framework.core.impl.biz.ShiroGenericBizServiceImpl;
 import com.kalix.framework.core.util.Assert;
+import com.kalix.general.teaching.api.biz.IClassInfoBeanService;
 import com.kalix.general.teaching.api.biz.IMajorInfoBeanService;
 import com.kalix.general.person.api.biz.IStudentBeanService;
 import com.kalix.general.person.api.dao.IStudentBeanDao;
@@ -20,6 +21,7 @@ import java.util.Map;
 public class StudentBeanServiceImpl extends ShiroGenericBizServiceImpl<IStudentBeanDao, StudentBean> implements IStudentBeanService {
     private static final String FUNCTION_NAME = "学生信息";
     private IMajorInfoBeanService majorBeanService;
+    private IClassInfoBeanService classBeanService;
 
     public StudentBeanServiceImpl() {
         super.init(StudentBean.class.getName());
@@ -64,16 +66,16 @@ public class StudentBeanServiceImpl extends ShiroGenericBizServiceImpl<IStudentB
     @Override
     public StudentBean getEntity(long entityId) {
         Map<String, Object> maps = new HashMap<String, Object>();
-        maps.put("majorId/majorName/cnname", majorBeanService);
-        //maps.put("classId/className/name", classBeanService);
+        maps.put("majorId/majorName/cnName", majorBeanService);
+        maps.put("classId/className/name", classBeanService);
         return super.getEntity(entityId, maps);
     }
 
     @Override
     public JsonData getAllEntityByQuery(QueryDTO queryDTO) {
         Map<String, Object> maps = new HashMap<String, Object>();
-        maps.put("majorId/majorName/cnname", majorBeanService);
-        //maps.put("classId/className/name", classBeanService);
+        maps.put("majorId/majorName/cnName", majorBeanService);
+        maps.put("classId/className/name", classBeanService);
         return super.getAllEntityByQuery(queryDTO, maps);
     }
 
@@ -102,5 +104,9 @@ public class StudentBeanServiceImpl extends ShiroGenericBizServiceImpl<IStudentB
 
     public void setMajorBeanService(IMajorInfoBeanService majorBeanService) {
         this.majorBeanService = majorBeanService;
+    }
+
+    public void setClassBeanService(IClassInfoBeanService classBeanService) {
+        this.classBeanService = classBeanService;
     }
 }

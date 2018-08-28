@@ -1,18 +1,22 @@
 package com.kalix.general.teaching.biz;
 
+import com.kalix.framework.core.api.persistence.JsonData;
 import com.kalix.framework.core.api.persistence.JsonStatus;
 import com.kalix.framework.core.impl.biz.ShiroGenericBizServiceImpl;
 import com.kalix.framework.core.util.Assert;
 import com.kalix.general.teaching.api.biz.IClassInfoBeanService;
-import com.kalix.general.teaching.api.biz.IGradeBeanService;
-import com.kalix.general.teaching.api.biz.IMajorInfoBeanService;
 import com.kalix.general.teaching.api.dao.IClassInfoBeanDao;
+import com.kalix.general.teaching.api.dao.IGradeBeanDao;
+import com.kalix.general.teaching.api.dao.IMajorInfoBeanDao;
 import com.kalix.general.teaching.entities.ClassInfoBean;
 import com.kalix.general.teaching.entities.GradeBean;
 import com.kalix.general.teaching.entities.MajorInfoBean;
 
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,8 +25,8 @@ import java.util.List;
 public class ClassInfoBeanServiceImpl extends ShiroGenericBizServiceImpl<IClassInfoBeanDao, ClassInfoBean> implements IClassInfoBeanService {
 
     private static final String FUNCTION_NAME = "班级";
-    private IGradeBeanService gradeBeanService;
-    private IMajorInfoBeanService majorInfoBeanService;
+    private IGradeBeanDao gradeBeanDao;
+    private IMajorInfoBeanDao majorInfoBeanDao;
 
     @Override
     public boolean isDelete(Long entityId, JsonStatus status) {
@@ -57,10 +61,10 @@ public class ClassInfoBeanServiceImpl extends ShiroGenericBizServiceImpl<IClassI
                 return false;
             }*/
             // 生成新的班级代码
-            GradeBean gradeBean = gradeBeanService.getEntity(classInfoBean.getGradeId());
+            GradeBean gradeBean = gradeBeanDao.get(classInfoBean.getGradeId());
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
             String year = sdf.format(gradeBean.getGrade());
-            MajorInfoBean majorInfoBean = majorInfoBeanService.getEntity(classInfoBean.getMajorId());
+            MajorInfoBean majorInfoBean = majorInfoBeanDao.get(classInfoBean.getMajorId());
             String newCode = year + majorInfoBean.getCode() + classInfoBean.getXh();
             // 判断班级代码是否重复
             List<ClassInfoBean> beans = dao.find("select ob from ClassInfoBean ob where ob.id <> ?1 and ob.code = ?2 ",
@@ -84,11 +88,11 @@ public class ClassInfoBeanServiceImpl extends ShiroGenericBizServiceImpl<IClassI
         List<ClassInfoBean> beans = dao.find("select ob from ClassInfoBean ob where ob.gradeId = ?1 and ob.majorId = ?2 order by ob.code",
                 classInfoBean.getGradeId(), classInfoBean.getMajorId());
         if (beans != null && beans.size() > 0) {
-            for (int i=1; i < 100; i++) {
+            for (int i = 1; i < 100; i++) {
                 boolean isOK = true;
-                for (int j=0; j<beans.size();j++) {
+                for (int j = 0; j < beans.size(); j++) {
                     String code = beans.get(j).getCode();
-                    int tmp = Integer.parseInt(code.substring(code.length()-2,code.length()));
+                    int tmp = Integer.parseInt(code.substring(code.length() - 2, code.length()));
                     if (tmp == i) {
                         isOK = false;
                         break;
@@ -109,20 +113,47 @@ public class ClassInfoBeanServiceImpl extends ShiroGenericBizServiceImpl<IClassI
             return false;
         }
         // 生成新的班级代码
-        GradeBean gradeBean = gradeBeanService.getEntity(classInfoBean.getGradeId());
+        GradeBean gradeBean = gradeBeanDao.get(classInfoBean.getGradeId());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
         String year = sdf.format(gradeBean.getGrade());
-        MajorInfoBean majorInfoBean = majorInfoBeanService.getEntity(classInfoBean.getMajorId());
+        MajorInfoBean majorInfoBean = majorInfoBeanDao.get(classInfoBean.getMajorId());
         String newCode = year + majorInfoBean.getCode() + xh;
         classInfoBean.setCode(newCode);
         return true;
     }
 
-    public void setGradeBeanService(IGradeBeanService gradeBeanService) {
-        this.gradeBeanService = gradeBeanService;
+    /**
+     * 根据年级和专业id获取所有班级信息
+     *
+     * @param grade
+     * @param majorId
+     * @return
+     */
+    @Override
+    public JsonData getClassInfos(String grade, Long majorId) {
+        JsonData jsonData = new JsonData();
+        List classInfos = new ArrayList<>();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+        try {
+            Date date = sdf.parse(grade);
+            String sql = "select c.* from " + this.dao.getTableName() + " c where c.gradeid in " +
+                    " (select g.id from " + this.gradeBeanDao.getTableName() + " g where g.grade = ?1) and c.majorid = ?2";
+            classInfos = this.dao.findByNativeSql(sql, ClassInfoBean.class, date, majorId);
+            jsonData.setData(classInfos);
+            jsonData.setTotalCount((long) classInfos.size());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return jsonData;
     }
 
-    public void setMajorInfoBeanService(IMajorInfoBeanService majorInfoBeanService) {
-        this.majorInfoBeanService = majorInfoBeanService;
+    public void setGradeBeanDao(IGradeBeanDao gradeBeanDao) {
+        this.gradeBeanDao = gradeBeanDao;
+    }
+
+    public void setMajorInfoBeanDao(IMajorInfoBeanDao majorInfoBeanDao) {
+        this.majorInfoBeanDao = majorInfoBeanDao;
     }
 }
