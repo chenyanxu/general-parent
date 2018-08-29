@@ -87,11 +87,11 @@ public class MajorInfoBeanServiceImpl extends TreeExtendShiroGenericBizServiceIm
         if (nodeId != null && nodeId.longValue() > 0) {
             String sql = "select DISTINCT(o.*) from " + this.organizationBeanDao.getTableName() + " o, " +
                     this.dao.getTableName() + " m where o.id = m.treeid and m.id = ?1 order by o.id";
-            list = this.dao.findByNativeSql(sql, OrganizationBean.class, nodeId);
+            list = this.organizationBeanDao.findByNativeSql(sql, OrganizationBean.class, nodeId);
         } else {
             String sql = "select DISTINCT(o.*) from " + this.organizationBeanDao.getTableName() + " o, " +
                     this.dao.getTableName() + " m where o.id = m.treeid order by o.id";
-            list = this.dao.findByNativeSql(sql, OrganizationBean.class);
+            list = this.organizationBeanDao.findByNativeSql(sql, OrganizationBean.class);
         }
         rtn.setId(-1L);
         List<BaseTreeDTO> orgs = new ArrayList<BaseTreeDTO>();
